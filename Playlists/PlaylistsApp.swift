@@ -20,7 +20,7 @@ struct PlaylistsApp: App {
     @StateObject var playlistController = PlaylistController()
     @StateObject var searches = RecentSearches()
     @StateObject var themeController = ThemeController()
-//    @ObservedObject var colorController = ColorController()
+    @ObservedObject var colorController = ColorController()
     
 //    var queue = Queue()
     
@@ -61,7 +61,7 @@ struct SystemServices: ViewModifier {
     static var playlistController = PlaylistController()
     static var searches = RecentSearches()
     static var themeController = ThemeController()
-//    static var colorController = ColorController()
+    static var colorController = ColorController()
     
     func body(content: Content) -> some View {
         content
@@ -70,7 +70,7 @@ struct SystemServices: ViewModifier {
             .environmentObject(Self.playlistController)
             .environmentObject(Self.searches)
             .environmentObject(Self.themeController)
-//            .environmentObject(Self.colorController)
+            .environmentObject(Self.colorController)
     }
 }
 

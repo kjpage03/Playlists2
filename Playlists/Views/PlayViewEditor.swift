@@ -13,7 +13,7 @@ struct PlayViewEditor: View {
     @State var buttonColor = Color.white
     @State var backgroundColor = Color.white
     @Binding var isShowing: Bool
-//    @EnvironmentObject var colorController: ColorController
+    @EnvironmentObject var colorController: ColorController
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -34,6 +34,7 @@ struct PlayViewEditor: View {
             }
                 Spacer()
             HStack {
+                Spacer()
                 Text("Slider Color:")
                     .padding()
                 Spacer()
@@ -42,12 +43,14 @@ struct PlayViewEditor: View {
                     .scaleEffect(CGSize(width: 3.0, height: 3.0))
                     .padding(.horizontal)
                     .labelsHidden()
+                Spacer()
             }
             .padding(.top)
 
             Spacer()
                 
             HStack {
+                Spacer()
                 Text("Button Color:")
                     .padding()
                 Spacer()
@@ -56,6 +59,7 @@ struct PlayViewEditor: View {
                     .scaleEffect(CGSize(width: 3.0, height: 3.0))
                     .padding(.horizontal)
                     .labelsHidden()
+                Spacer()
             }
             Spacer()
 //            HStack {
@@ -75,9 +79,9 @@ struct PlayViewEditor: View {
                         Spacer()
                     Button(action: {
                         
-//                        colorController.sliderColor = sliderColor
-//                        colorController.buttonColor = buttonColor
-//                        colorController.backgroundColor = backgroundColor
+                        colorController.sliderColor = sliderColor
+                        colorController.buttonColor = buttonColor
+                        colorController.backgroundColor = backgroundColor
                         isShowing = false
                         
                     }, label: {
@@ -94,20 +98,20 @@ struct PlayViewEditor: View {
             
         }
         .onAppear(perform: {
-//            sliderColor = colorController.sliderColor
-//            buttonColor = colorController.buttonColor
-//            backgroundColor = colorController.backgroundColor
+            sliderColor = colorController.sliderColor
+            buttonColor = colorController.buttonColor
+            backgroundColor = colorController.backgroundColor
         })
     }
 }
 
-//class ColorController: ObservableObject {
-//
-//    @Published var sliderColor: Color = Color.red
-//    @Published var buttonColor: Color = Color.black
-//    @Published var backgroundColor: Color = Color.white
-//
-//}
+class ColorController: ObservableObject {
+
+    @Published var sliderColor: Color = Color.red
+    @Published var buttonColor: Color = Color.black
+    @Published var backgroundColor: Color = Color.white
+
+}
 
 //struct PlayViewEditor_Previews: PreviewProvider {
 //    static var previews: some View {

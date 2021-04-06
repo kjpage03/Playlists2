@@ -20,8 +20,8 @@ struct PlaylistView: View {
     @State var specialID = String()
     @State var didChange: Bool = false
     @Binding var finishedEditing: Bool
-    @Binding var isActive: Bool
     var defaultImage = UIImage(named: "gray-square")
+    
     
 //    func setBackground() {
 //        DispatchQueue.main.async {
@@ -54,14 +54,14 @@ struct PlaylistView: View {
                 HStack() {
                     if let description = playlist.description {
                         VStack(alignment: .leading) {
-                            PlaylistControls(isActive: $isActive, playlist: playlist)
+                            PlaylistControls(playlist: playlist)
                                 .padding()
                             Text(description)
                                 .fontWeight(.light)
                                 .padding(.horizontal)
                         }
                     } else {
-                        PlaylistControls(isActive: $isActive, playlist: playlist)
+                        PlaylistControls(playlist: playlist)
                             .padding()
                     }
                     

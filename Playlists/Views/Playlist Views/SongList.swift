@@ -12,9 +12,10 @@ struct SongList: View {
     @EnvironmentObject var playlistController: PlaylistController
     @EnvironmentObject var controller: MusicController
     @EnvironmentObject var themeController: ThemeController
-    @EnvironmentObject var popController: PopController
     @State var specialID = String()
     @State var selection: String? = nil
+    @Environment(\.presentationMode) var presentationMode
+
 
     var playlist: Playlist
     
@@ -37,17 +38,17 @@ struct SongList: View {
                                 self.controller.items.insert(song, at: 0)
                                 self.controller.play()
                                 self.selection = song.id
-                                popController.isActive = false
+//                                presentationMode.wrappedValue.dismiss()
                             }
 
                         
-                        NavigationLink(destination: PlayView(), tag: song.id,selection: $selection) {
-                            //SongRow(song: song)
-                            //.padding(5)
-                            EmptyView()
-                        }
-                        .opacity(0)
-                        .buttonStyle(PlainButtonStyle())
+//                        NavigationLink(destination: PlayView(), tag: song.id,selection: $selection) {
+//                            //SongRow(song: song)
+//                            //.padding(5)
+//                            EmptyView()
+//                        }
+//                        .opacity(0)
+//                        .buttonStyle(PlainButtonStyle())
                         
                     }
                     

@@ -97,7 +97,7 @@ struct PlaylistEditor: View {
                     }
                     
                     Spacer()
-                    NavigationLink(destination: PlaylistsView(), isActive: $didDelete) {
+//                    NavigationLink(destination: PlaylistsView(), isActive: $didDelete) {
                         Button(action: {
                             //remove playlist from items array somehow
                             for (index, item) in playlistController.items.enumerated() {
@@ -113,7 +113,7 @@ struct PlaylistEditor: View {
                             Text("Delete Playlist")
                                 .accentColor(.red)
                         })
-                    }
+//                    }
                     Spacer()
                 }
                 

@@ -15,7 +15,6 @@ struct PlaylistControls: View {
     @State var searchIsActive = false
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.presentationMode) var presentationMode
-    @Binding var isActive: Bool
     @State var isShowing = true
     var playlist: Playlist
     
@@ -32,7 +31,6 @@ struct PlaylistControls: View {
                     
                     playIsActive = true
                     presentationMode.wrappedValue.dismiss()
-                    isActive = true
                         
                     }, label: {
                         ZStack {
@@ -61,7 +59,6 @@ struct PlaylistControls: View {
                     }
                     shuffleIsActive = true
                     presentationMode.wrappedValue.dismiss()
-                    isActive = true
 
                 }, label: {
                     ZStack {

@@ -69,7 +69,7 @@ struct PlaylistCreator: View {
                 
                 VStack {
                     Spacer()
-                    NavigationLink(destination: PlaylistsView()) {
+//                    NavigationLink(destination: PlaylistsView()) {
                         
                         //disable if text fields are empty
                         Button(action: {
@@ -83,7 +83,7 @@ struct PlaylistCreator: View {
                         }
                         
                         
-                    }.sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
+                    .sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
                         ImagePicker(image: $inputImage)
                     }
                     .scaleEffect(CGSize(width: 1.0, height: 1.0))

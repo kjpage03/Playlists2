@@ -29,6 +29,9 @@ struct PlayView: View {
     @State var showQueue: Bool = false
     @State var queuePresented: Bool = false
     @State var searchViewShowing = false
+    @State var playlistsViewShowing = false
+    
+    @State var isActive: Bool = false
     
     @ObservedObject var popController = PopController()
     @Environment(\.colorScheme) var colorScheme
@@ -36,7 +39,7 @@ struct PlayView: View {
     let timer = Timer.publish(every: 1, on: .current, in: .common).autoconnect()
     
     @EnvironmentObject var controller: MusicController
-//    @EnvironmentObject var colorController: ColorController
+    @EnvironmentObject var colorController: ColorController
     
     func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
         return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
@@ -159,8 +162,8 @@ struct PlayView: View {
                     
                     VStack(alignment: .center, spacing: 5) {
                         Slider(value: time, in: 0...Double(controller.currentSong.attributes.durationInMillis/1000), step: 1)
-                            .accentColor(.red)
-//                            .accentColor(colorController.sliderColor)
+//                            .accentColor(.red)
+                            .accentColor(colorController.sliderColor)
                             .padding(.leading)
                             .padding(.trailing)
                         
@@ -233,14 +236,39 @@ struct PlayView: View {
                         
                 trailing:
                     
-                    NavigationLink(destination: LinkPresenter { PlaylistsView().environmentObject(popController) }) {
-                        Image("List")
-                            .renderingMode(.template)
-                            .foregroundColor(colorScheme == .dark ? .white : .black)
-                            .scaleEffect(CGSize(width: 0.09, height: 0.09))
-                            .padding()
-                            .frame(width: 50, height: 50, alignment: .center)
-                    })
+                        NavigationLink(
+                            destination: PlaylistsView(),
+                            isActive: self.$isActive
+                        ) {
+                            Image("List")
+                                .renderingMode(.template)
+                                .foregroundColor(colorScheme == .dark ? .white : .black)
+                                .scaleEffect(CGSize(width: 0.09, height: 0.09))
+                                .padding()
+                                .frame(width: 50, height: 50, alignment: .center)
+                        }
+//                        .isDetailLink(false)
+                    
+//                    VStack{
+//                    NavigationLink(destination: LinkPresenter { PlaylistsView(isShowing: $playlistsViewShowing)},
+//                                   isActive: $playlistsViewShowing) { EmptyView() }
+//
+//                        Button(action: {
+//                            playlistsViewShowing = true
+//                        }, label: {
+//                            Image("List")
+//                                .renderingMode(.template)
+//                                .foregroundColor(colorScheme == .dark ? .white : .black)
+//                                .scaleEffect(CGSize(width: 0.09, height: 0.09))
+//                                .padding()
+//                                .frame(width: 50, height: 50, alignment: .center)
+//                        })
+//                    }
+            )
+                    
+//                    NavigationLink(destination: LinkPresenter { PlaylistsView(isShowing: $playlistsViewShowing).environmentObject(popController) }) {
+//
+//                    })
 
         }
         .navigationViewStyle(StackNavigationViewStyle())

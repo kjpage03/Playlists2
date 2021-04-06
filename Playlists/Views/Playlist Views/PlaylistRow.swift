@@ -11,7 +11,6 @@ struct PlaylistRow: View {
     
     var playlist: Playlist
     @State var didFinishEditing = false
-    @Binding var isActive: Bool
     @EnvironmentObject var popController: PopController
     
     var body: some View {
@@ -19,20 +18,23 @@ struct PlaylistRow: View {
             
             if let playlistImage = UIImage(data: playlist.image ?? Data()) {
                 
-                NavigationLink(destination: PlaylistView(playlist: playlist, finishedEditing: $didFinishEditing, isActive: $isActive), isActive: $didFinishEditing) {
+                NavigationLink(destination: PlaylistView(playlist: playlist, finishedEditing: $didFinishEditing), isActive: $didFinishEditing) {
                     Image(uiImage: playlistImage)
                         .resizable()
                         .frame(width: 140, height: 140)
                         .aspectRatio(contentMode: .fit)
                         .clipShape(Circle())
                         .shadow(radius: 5)
+//                        .onTapGesture {
+//                            rootIsActive = false
+//                        }
 //                        .overlay(Circle().stroke(Color.black, lineWidth: 0.5))
 
                 }
                 
                 } else {
                     
-                    NavigationLink(destination: PlaylistView(playlist: playlist, finishedEditing: $didFinishEditing, isActive: $isActive), isActive: $didFinishEditing) {
+                    NavigationLink(destination: PlaylistView(playlist: playlist, finishedEditing: $didFinishEditing), isActive: $didFinishEditing) {
                         Image("gray-square")
                             .frame(width: 140, height: 140)
                             .scaleEffect(CGSize(width: 0.2, height: 0.2))

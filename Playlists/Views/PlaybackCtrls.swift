@@ -14,7 +14,7 @@ struct PlayControl: View {
     @Binding var didGoBack: Bool
     @EnvironmentObject var controller: MusicController
     @Environment(\.colorScheme) var colorScheme
-//    @EnvironmentObject var colorController: ColorController
+    @EnvironmentObject var colorController: ColorController
 
     var body: some View {
         
@@ -29,8 +29,8 @@ struct PlayControl: View {
             }) {
                 Image("Back")
                     .renderingMode(.template)
-                    .foregroundColor(colorScheme == .dark ? .white : .black)
-//                colorController.buttonColor == .black && colorScheme == .dark ? .white : colorController.buttonColor
+//                    .foregroundColor(colorScheme == .dark ? .white : .black)
+                    .foregroundColor(colorController.buttonColor == .black && colorScheme == .dark ? .white : colorController.buttonColor)
 //                    .foregroundColor()
                     .scaleEffect(CGSize(width: 0.1, height: 0.1))
                     .padding(-220)
@@ -58,8 +58,8 @@ struct PlayControl: View {
                 
                 Image(controller.musicPlayer.playbackState == .paused ? "Play" : "Pause")
                     .renderingMode(.template)
-                    .foregroundColor(colorScheme == .dark ? .white : .black)
-//                    .foregroundColor(colorController.buttonColor == .black && colorScheme == .dark ? .white : colorController.buttonColor)
+//                    .foregroundColor(colorScheme == .dark ? .white : .black)
+                    .foregroundColor(colorController.buttonColor == .black && colorScheme == .dark ? .white : colorController.buttonColor)
 
                     .scaleEffect(controller.musicPlayer.playbackState == .paused ? CGSize(width: 0.18, height: 0.18) : CGSize(width: 0.23, height: 0.23))
                         .padding(-200)
@@ -75,8 +75,8 @@ struct PlayControl: View {
             }) {
                     Image("Back")
                         .renderingMode(.template)
-                        .foregroundColor(colorScheme == .dark ? .white : .black)
-//                        .foregroundColor(colorController.buttonColor == .black && colorScheme == .dark ? .white : colorController.buttonColor)
+//                        .foregroundColor(colorScheme == .dark ? .white : .black)
+                        .foregroundColor(colorController.buttonColor == .black && colorScheme == .dark ? .white : colorController.buttonColor)
                         .scaleEffect(CGSize(width: 0.1, height: 0.1))
                         .padding(-220)
                         .rotationEffect(.degrees(180))
